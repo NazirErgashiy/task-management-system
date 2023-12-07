@@ -1,0 +1,82 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.17'
+    id 'jacoco'
+}
+
+group 'uz.nazir.task'
+version '0.0.1-SNAPSHOT'
+
+java{
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+
+    //Spring
+    implementation "org.springframework.boot:spring-boot-starter:${springStarterVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-web:${springStarterVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-security:${springStarterVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springStarterVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-jdbc:${springStarterVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-validation:${springStarterVersion}"
+    testImplementation "org.springframework.boot:spring-boot-starter-test:${springStarterVersion}"
+
+    //Needed dependencies
+    implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
+    implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
+
+    //JWT
+    implementation "io.jsonwebtoken:jjwt-api:${jwtVersion}"
+    runtimeOnly "io.jsonwebtoken:jjwt-impl:${jwtVersion}"
+    runtimeOnly "io.jsonwebtoken:jjwt-jackson:${jwtVersion}"
+
+    //Swagger
+    implementation "io.springfox:springfox-boot-starter:${swaggerVersion}"
+
+    //SQL
+    runtimeOnly "org.postgresql:postgresql:${postgreSqlVersion}"
+    runtimeOnly 'com.h2database:h2:2.1.214'
+    testImplementation 'com.h2database:h2:2.1.214'
+
+    //LiquiBase
+    implementation 'org.liquibase:liquibase-core:4.25.0'
+
+    //Lombok
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    //MapStruct
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+    implementation "org.projectlombok:lombok-mapstruct-binding:${mapstructBindingVersion}"
+
+    //JUnit
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport // report is always generated after tests run
+}
+
+jacoco {
+    toolVersion = '0.8.11'
+}
+
+jacocoTestReport {
+    reports {
+        csv.enabled = false
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+build.dependsOn jacocoTestReport
