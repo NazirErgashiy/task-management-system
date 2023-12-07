@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  task-management-API:
+    container_name: task-management-API
+    build: ./
+    restart: on-failure
+    depends_on:
+      - postgres
+
+
+  postgres:
+    image: 'postgres:12-alpine'
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: testdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
