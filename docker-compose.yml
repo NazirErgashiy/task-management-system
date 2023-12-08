@@ -1,17 +1,19 @@
 version: '3'
 
 services:
-  task-management-API:
-    container_name: task-management-API
+  task-management-api:
+    container_name: task-management-api
+    ports:
+      - "8080:8080"
     build: ./
     restart: on-failure
     depends_on:
-      - postgres
+      - postgredb
 
 
-  postgres:
+  postgredb:
     image: 'postgres:12-alpine'
-    container_name: postgres
+    container_name: postgredb
     ports:
       - "5432:5432"
     restart: always

@@ -8,6 +8,7 @@ import uz.nazir.task.entities.enums.Priority;
 import uz.nazir.task.entities.enums.Status;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -21,6 +22,7 @@ public class TaskDtoResponse {
     private Priority priority;
     private Long taskAuthorId;
     private Long taskPerformerId;
+    private List<Long> commentsId;
     private LocalDateTime createDate;
     private LocalDateTime updateDate;
 }

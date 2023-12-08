@@ -36,7 +36,7 @@ public class UserController {
     public Page<UserDtoResponse> readPaged(
             @PageableDefault(page = 0, size = 50)
             @SortDefault.SortDefaults({
-                    @SortDefault(sort = "name", direction = Sort.Direction.ASC)
+                    @SortDefault(sort = "id", direction = Sort.Direction.ASC)
             }) Pageable pageable
     ) {
         return userService.readAll(pageable);
@@ -64,7 +64,7 @@ public class UserController {
                        @RequestBody
                        @Validated
                        UserDtoRequest request) {
-        roleValidator.canEditOnlySelfElements(request.getEmail(), new Role[]{Role.USER});
+        roleValidator.checkSelfEditing(request, new Role[]{Role.USER});
         userService.update(id, request);
     }
 

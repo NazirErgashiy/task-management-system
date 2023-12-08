@@ -17,15 +17,18 @@ public interface TaskMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createDate", ignore = true)
     @Mapping(target = "updateDate", ignore = true)
+    @Mapping(target = "comments", ignore = true)
     Task dtoToEntity(TaskDtoRequest request);
 
     @Mapping(source = "taskAuthor", target = "taskAuthorId")
     @Mapping(source = "taskPerformer", target = "taskPerformerId")
+    @Mapping(source = "comments", target = "commentsId")
     TaskDtoResponse entityToDto(Task entity);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createDate", ignore = true)
     @Mapping(target = "updateDate", ignore = true)
+    @Mapping(target = "comments", ignore = true)
     @Mapping(source = "taskAuthorId", target = "taskAuthor")
     @Mapping(source = "taskPerformerId", target = "taskPerformer")
     void toEntity(TaskDtoRequest request, @MappingTarget Task task);

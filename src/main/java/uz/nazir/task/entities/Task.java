@@ -18,17 +18,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tasks")
+@Table(name = "_tasks")
 public class Task {
 
     @Id
@@ -57,10 +59,9 @@ public class Task {
     @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_performer_fk", nullable = false)
     private User taskPerformer;
-/*
-    @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.LAZY, mappedBy = "comments")
+
+    @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.DETACH}, mappedBy = "task")
     private List<Comment> comments;
- */
 
     @Column(name = "create_date")
     private LocalDateTime createDate;

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import uz.nazir.task.validators.annotation.Enum;
 
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 
 @Data
@@ -27,7 +28,7 @@ public class TaskDtoRequest {
     @Enum(value = {"LOW", "MEDIUM", "HIGH"}, message = "Priority available values [LOW, MEDIUM, HIGH]")
     private String priority;
 
-    @Min(1)
+    @Null
     private Long taskAuthorId;
 
     @Min(1)

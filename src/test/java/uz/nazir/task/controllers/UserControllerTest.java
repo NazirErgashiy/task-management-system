@@ -52,6 +52,7 @@ class UserControllerTest {
     @BeforeTestClass
     public void setupMocks() {
         validator = Mockito.mock(RoleValidator.class);
+        doThrow(new RuntimeException()).when(validator).checkSelfEditing(any(), any());
         doThrow(new RuntimeException()).when(validator).canEditOnlySelfElements(anyLong(), any());
         doThrow(new RuntimeException()).when(validator).canEditOnlySelfElements(anyString(), any());
         doThrow(new RuntimeException()).when(validator).availableRoles(any());

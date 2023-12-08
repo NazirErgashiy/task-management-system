@@ -32,7 +32,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "users", indexes = {@Index(name = "e_index", unique = true, columnList = "email")})
+@Table(name = "_users", indexes = {@Index(name = "e_index", unique = true, columnList = "email")})
 public class User implements UserDetails {
 
     @Id

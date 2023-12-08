@@ -36,7 +36,7 @@ public class TaskController {
     public Page<TaskDtoResponse> readPaged(
             @PageableDefault(page = 0, size = 50)
             @SortDefault.SortDefaults({
-                    @SortDefault(sort = "status", direction = Sort.Direction.ASC)
+                    @SortDefault(sort = "id", direction = Sort.Direction.ASC)
             }) Pageable pageable
     ) {
         return taskService.readAll(pageable);
