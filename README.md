@@ -1,3 +1,7 @@
+# Этап был успешно пройден!
+
+---
+
 # Task-Management-System
 ###### Test task from company - "***Effective Mobile***"
 
